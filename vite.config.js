@@ -1,7 +1,10 @@
 import path from "path";
 
 export default {
-  root: path.resolve(__dirname, "src"),
+  root: "src",
+  build: {
+    outDir: "../dist",
+  },
   resolve: {
     alias: {
       "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),

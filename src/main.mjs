@@ -17,7 +17,11 @@ const firestore = getFirestore(app);
 // State
 const fraseBtn = document.querySelector("#updateFraseBtn");
 const fraseTxt = document.querySelector("#frase");
-let totalFrases = 0;
+
+// Total de frase no backend
+const numFrasesDoc = await getDoc(doc(firestore, "frases/num"));
+const dados = numFrasesDoc.data();
+const totalFrases = dados.frases;
 
 // Event handler
 fraseBtn.addEventListener("click", updateText);
@@ -29,20 +33,10 @@ function getRandomInt(min, max) {
 
 // Atualiza o texto na página com uma frase aleatória
 async function updateText() {
-  if (totalFrases === 0) {
-    const numFrasesDoc = await getDoc(doc(firestore, "frases/num"));
-    if (numFrasesDoc.exists) {
-      const dados = numFrasesDoc.data();
-      totalFrases = dados.frases;
-    }
-  }
-
-  if (totalFrases > 0) {
-    const frase = getRandomInt(1, totalFrases);
-    const fraseDoc = await getDoc(doc(firestore, "frases/" + frase));
-    if (fraseDoc.exists) {
-      const dados = fraseDoc.data();
-      fraseTxt.innerHTML = dados.frase;
-    }
+  const frase = getRandomInt(1, totalFrases);
+  const fraseDoc = await getDoc(doc(firestore, "frases/" + frase));
+  if (fraseDoc.exists) {
+    const dados = fraseDoc.data();
+    fraseTxt.innerHTML = dados.frase;
   }
 }

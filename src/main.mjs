@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+import { visible, invisible } from "./animation.module.scss";
 import "./styles.scss";
 
 // Inicializar Firebase
@@ -15,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
 // State
+const container = document.querySelector("#container");
 const fraseBtn = document.querySelector("#updateFraseBtn");
 const fraseTxt = document.querySelector("#frase");
 
@@ -33,10 +35,25 @@ function getRandomInt(min, max) {
 
 // Atualiza o texto na página com uma frase aleatória
 async function updateText() {
+  // Começar a animação de troca de frase
+  container.classList.add(invisible);
+  container.classList.remove(visible);
+  const ultimaUpdate = Date.now();
+
+  // Obter frase aleatoriamente
   const frase = getRandomInt(1, totalFrases);
   const fraseDoc = await getDoc(doc(firestore, "frases/" + frase));
-  if (fraseDoc.exists) {
-    const dados = fraseDoc.data();
-    fraseTxt.innerHTML = dados.frase;
-  }
+
+  // Esperar pelo menos 400ms para completar a animação
+  if (Date.now() - ultimaUpdate < 400)
+    await new Promise((resolve) =>
+      setTimeout(resolve, 400 - (Date.now() - ultimaUpdate))
+    );
+
+  // Atualizar o texto com a nova frase
+  if (fraseDoc.exists) fraseTxt.innerHTML = fraseDoc.data().frase;
+
+  // Finalizar a animação de troca de frase
+  container.classList.add(visible);
+  container.classList.remove(invisible);
 }

@@ -1,4 +1,5 @@
 import path from "path";
+import htmlPurge from "vite-plugin-purgecss";
 
 export default {
   root: "src",
@@ -14,4 +15,5 @@ export default {
     port: 8080,
     hot: true,
   },
+  plugins: [htmlPurge()],
 };

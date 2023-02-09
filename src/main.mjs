@@ -1,9 +1,6 @@
-import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  doc,
-  getDoc,
-} from 'firebase/firestore'
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import "./scss/styles.scss";
 
 // Inicializar Firebase
 const firebaseConfig = {

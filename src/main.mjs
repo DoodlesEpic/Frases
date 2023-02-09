@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import { visible, invisible } from "./animation.module.scss";
 import "./styles.scss";
 
 // Inicializar Firebase
@@ -36,8 +35,8 @@ function getRandomInt(min, max) {
 // Atualiza o texto na página com uma frase aleatória
 async function updateText() {
   // Começar a animação de troca de frase
-  container.classList.add(invisible);
-  container.classList.remove(visible);
+  container.classList.add("invisible");
+  container.classList.remove("visible");
   const ultimaUpdate = Date.now();
 
   // Obter frase aleatoriamente
@@ -54,6 +53,6 @@ async function updateText() {
   if (fraseDoc.exists) fraseTxt.innerHTML = fraseDoc.data().frase;
 
   // Finalizar a animação de troca de frase
-  container.classList.add(visible);
-  container.classList.remove(invisible);
+  container.classList.add("visible");
+  container.classList.remove("invisible");
 }

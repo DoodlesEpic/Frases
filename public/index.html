@@ -31,10 +31,16 @@
   </head>
 
   <body class="d-flex h-100 text-center text-white bg-dark">
-    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+      // Inicializar Firebase
+      const firebaseConfig = {
         apiKey: "AIzaSyCwjqBBW4mVV7m4NDqrLyd4PAtSaLwN23I",
         authDomain: "frases-7f8cb.firebaseapp.com",
         databaseURL: "https://frases-7f8cb.firebaseio.com",
@@ -42,62 +48,48 @@
         storageBucket: "frases-7f8cb.appspot.com",
         messagingSenderId: "192789687047",
       };
-      firebase.initializeApp(config);
+      const app = initializeApp(firebaseConfig);
+      const firestore = getFirestore(app);
+
+      // State
+      const fraseBtn = document.querySelector("#updateFraseBtn");
+      const fraseTxt = document.querySelector("#frase");
+      let frase = 0;
+
+      // Event handler
+      fraseBtn.addEventListener("click", updateText);
+
+      // Helper que retorna número aleatório entre min e max
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // Atualiza o texto na página com uma frase aleatória
+      async function updateText() {
+        const numFrasesDoc = await getDoc(doc(firestore, "frases/num"));
+        if (numFrasesDoc.exists) {
+          const dados = numFrasesDoc.data();
+          frase = getRandomInt(1, dados.frases);
+        }
+
+        const fraseDoc = await getDoc(doc(firestore, "frases/" + frase));
+        if (fraseDoc.exists) {
+          const dados = fraseDoc.data();
+          fraseTxt.innerHTML = dados.frase;
+        }
+      }
     </script>
 
     <div class="d-flex h-100 mx-auto flex-column">
       <main class="my-auto">
         <h1 id="frase">O que importa é a intenção</h1>
         <button
-          onclick="updateText()"
+          id="updateFraseBtn"
           class="btn btn-secondary btn-lg mt-3 float-end"
         >
           Outra frase
         </button>
       </main>
     </div>
-
-    <script>
-      var firestore = firebase.firestore();
-
-      frase = 0;
-
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      function updateText() {
-        num_frases = firestore.doc("frases/num");
-
-        num_frases
-          .get()
-          .then(function (num_frases_doc) {
-            if (num_frases_doc.exists) {
-              dados = num_frases_doc.data();
-              frase = getRandomInt(1, dados.frases);
-              console.log(
-                "Quantas frases: " + dados.frases + " Número sorteado: " + frase
-              );
-            }
-          })
-          .catch(function (error) {
-            console.log("Deu ruim: " + error);
-          });
-
-        frase_firestore = firestore.doc("frases/" + frase);
-
-        frase_firestore
-          .get()
-          .then(function (frase_firestore_doc) {
-            if (frase_firestore_doc.exists) {
-              dados = frase_firestore_doc.data();
-              document.getElementById("frase").innerHTML = dados.frase;
-            }
-          })
-          .catch(function (error) {
-            console.log("Deu ruim: " + error);
-          });
-      }
-    </script>
   </body>
 </html>

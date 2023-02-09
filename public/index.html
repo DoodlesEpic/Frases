@@ -31,54 +31,7 @@
   </head>
 
   <body class="d-flex h-100 text-center text-white bg-dark">
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-      import {
-        getFirestore,
-        doc,
-        getDoc,
-      } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-
-      // Inicializar Firebase
-      const firebaseConfig = {
-        apiKey: "AIzaSyCwjqBBW4mVV7m4NDqrLyd4PAtSaLwN23I",
-        authDomain: "frases-7f8cb.firebaseapp.com",
-        databaseURL: "https://frases-7f8cb.firebaseio.com",
-        projectId: "frases-7f8cb",
-        storageBucket: "frases-7f8cb.appspot.com",
-        messagingSenderId: "192789687047",
-      };
-      const app = initializeApp(firebaseConfig);
-      const firestore = getFirestore(app);
-
-      // State
-      const fraseBtn = document.querySelector("#updateFraseBtn");
-      const fraseTxt = document.querySelector("#frase");
-      let frase = 0;
-
-      // Event handler
-      fraseBtn.addEventListener("click", updateText);
-
-      // Helper que retorna número aleatório entre min e max
-      function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      // Atualiza o texto na página com uma frase aleatória
-      async function updateText() {
-        const numFrasesDoc = await getDoc(doc(firestore, "frases/num"));
-        if (numFrasesDoc.exists) {
-          const dados = numFrasesDoc.data();
-          frase = getRandomInt(1, dados.frases);
-        }
-
-        const fraseDoc = await getDoc(doc(firestore, "frases/" + frase));
-        if (fraseDoc.exists) {
-          const dados = fraseDoc.data();
-          fraseTxt.innerHTML = dados.frase;
-        }
-      }
-    </script>
+    <script type="module" src="main.mjs"></script>
 
     <div class="d-flex h-100 mx-auto flex-column">
       <main class="my-auto">

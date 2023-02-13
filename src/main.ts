@@ -19,13 +19,13 @@ const container = document.querySelector("#container");
 const fraseBtn = document.querySelector("#updateFraseBtn");
 const fraseTxt = document.querySelector("#frase");
 
-// Total de frase no backend
+// Total de frases no backend
 const numFrasesDoc = await getDoc(doc(firestore, "frases/num"));
 const dados = numFrasesDoc.data();
-const totalFrases = dados.frases;
+const totalFrases = dados?.frases;
 
 // Event handler
-fraseBtn.addEventListener("click", updateText);
+fraseBtn?.addEventListener("click", updateText);
 
 // Helper que retorna número aleatório entre min e max
 function getRandomInt(min, max) {
@@ -35,8 +35,8 @@ function getRandomInt(min, max) {
 // Atualiza o texto na página com uma frase aleatória
 async function updateText() {
   // Começar a animação de troca de frase
-  container.classList.add("invisible");
-  container.classList.remove("visible");
+  container?.classList.add("invisible");
+  container?.classList.remove("visible");
   const ultimaUpdate = Date.now();
 
   // Obter frase aleatoriamente
@@ -50,9 +50,10 @@ async function updateText() {
     );
 
   // Atualizar o texto com a nova frase
-  if (fraseDoc.exists) fraseTxt.innerHTML = fraseDoc.data().frase;
+  if (fraseDoc.exists() && fraseTxt?.innerHTML)
+    fraseTxt.innerHTML = fraseDoc.data().frase;
 
   // Finalizar a animação de troca de frase
-  container.classList.add("visible");
-  container.classList.remove("invisible");
+  container?.classList.add("visible");
+  container?.classList.remove("invisible");
 }

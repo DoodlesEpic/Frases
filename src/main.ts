@@ -28,7 +28,7 @@ const totalFrases = dados?.frases;
 fraseBtn?.addEventListener("click", updateText);
 
 // Helper que retorna número aleatório entre min e max
-function getRandomInt(min, max) {
+function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

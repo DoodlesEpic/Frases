@@ -1,7 +1,7 @@
 {
   "name": "frases",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,11 +11,12 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
-    "sass": "^1.58.0",
-    "vite": "^4.5.3"
+    "sass": "^1.104.1",
+    "vite": "^4.5.14"
   },
   "dependencies": {
-    "bootstrap": "^5.2.3",
-    "firebase": "^9.17.1"
-  }
+    "bootstrap": "^5.3.8",
+    "firebase": "^9.23.0"
+  },
+  "packageManager": "yarn@4.18.0"
 }

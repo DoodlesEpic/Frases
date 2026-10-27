@@ -12,11 +12,11 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "sass": "^1.104.1",
-    "vite": "^4.5.14"
+    "vite": "^6.4.4"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "firebase": "^9.23.0"
+    "firebase": "^10.9.0"
   },
   "packageManager": "yarn@4.18.0"
 }

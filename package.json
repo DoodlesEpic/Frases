@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "firebase": "^10.9.0"
+    "firebase": "^13.1.0"
   },
   "packageManager": "yarn@4.18.1"
 }

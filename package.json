@@ -10,9 +10,9 @@
     "deploy": "vite build && firebase deploy"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
-    "sass": "^1.104.1",
-    "vite": "^6.4.4"
+    "@fullhuman/postcss-purgecss": "^8.0.0",
+    "sass": "^1.106.1",
+    "vite": "^8.3.5"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

@@ -1,0 +1,33 @@
+# Normalizar finais de linha automaticamente para arquivos de texto
+* text=auto
+
+# Garantir LF em arquivos de código e configuração web
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.mjs text eol=lf
+*.scss text eol=lf
+*.ts text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Tratar arquivos de mídia, fontes e compactados como binários
+*.avif binary
+*.eot binary
+*.gif binary
+*.gz binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.mp4 binary
+*.otf binary
+*.pdf binary
+*.png binary
+*.tar binary
+*.ttf binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary

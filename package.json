@@ -10,13 +10,12 @@
     "deploy": "vite build && firebase deploy"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
-    "sass": "^1.104.1",
-    "vite": "^6.4.4"
+    "@fullhuman/postcss-purgecss": "^8.0.0",
+    "vite": "^8.3.5"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "firebase": "^10.9.0"
+    "firebase": "^13.1.0"
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "yarn@4.18.1"
 }

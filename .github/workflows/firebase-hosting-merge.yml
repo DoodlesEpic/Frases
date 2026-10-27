@@ -2,19 +2,30 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+
+on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: yarn && yarn build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FRASES_7F8CB }}'
+          node-version: lts/*
+          cache: yarn
+      - run: yarn && yarn build
+      - uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FRASES_7F8CB }}
           channelId: live
           projectId: frases-7f8cb
+          firebaseToolsVersion: 15.34.0

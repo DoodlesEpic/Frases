@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import "./styles.scss";
+import "./styles.css";
 
 // Inicializar Firebase
 const firebaseConfig = {
@@ -46,7 +46,7 @@ async function updateText() {
   // Esperar pelo menos 400ms para completar a animação
   if (Date.now() - ultimaUpdate < 400)
     await new Promise((resolve) =>
-      setTimeout(resolve, 400 - (Date.now() - ultimaUpdate))
+      setTimeout(resolve, 400 - (Date.now() - ultimaUpdate)),
     );
 
   // Atualizar o texto com a nova frase

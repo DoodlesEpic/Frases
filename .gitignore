@@ -7,14 +7,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependências e Yarn
 node_modules
-.yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Build, cache e ambiente
 .firebase
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Editores e sistema
 .vscode/*
 !.vscode/extensions.json
 .idea
